@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paychex.springMVCProject.model.Alien;
@@ -27,6 +28,11 @@ public class AlienController {
 		
 		Alien a = repo.findById(aid).orElse(new Alien(0, ""));
 		return a;
+	}
+	@PostMapping("alien")
+	public Alien addAlien(Alien alien) {
+		repo.save(alien);
+		return alien;
 	}
 	
 	

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.paychex.springMVCProject.model.Alien;
@@ -16,7 +17,7 @@ public class AlienController {
 	@Autowired
 	AlienRepo repo;
 	
-	@GetMapping("/aliens")
+	@GetMapping(path="/aliens", produces = {"application/xml"})
 	public List<Alien> getAliens() {
 		List<Alien> alienList = repo.findAll();
 		
@@ -29,8 +30,8 @@ public class AlienController {
 		Alien a = repo.findById(aid).orElse(new Alien(0, ""));
 		return a;
 	}
-	@PostMapping("alien")
-	public Alien addAlien(Alien alien) {
+	@PostMapping(path="alien", consumes = {"application/json"})
+	public Alien addAlien(@RequestBody Alien alien) {
 		repo.save(alien);
 		return alien;
 	}

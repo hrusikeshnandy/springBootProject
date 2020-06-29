@@ -2,4 +2,11 @@
 Tools used:
 Spring Tool Suite 4.0
 
-updated teh project upto Spring REST 
+includes project for
+
+spring core
+spring ioc
+spring data JPA
+spring REST
+spring AOP
+
